@@ -1,0 +1,11 @@
+!!! XML
+!!!
+%html{ :xmlns => "http://www.w3.org/1999/xhtml", "xml:lang" => "en", :lang => "en" }
+  %head
+    %title= CONFIG['title']
+    %link{ :rel => 'stylesheet', :type => 'text/css', :href => '/stylesheets/application.css' }
+    %script{ :type => 'text/javascript', :src => '/javascripts/jquery.js' }
+  %body
+    #page
+      %h1= CONFIG['title']
+      = yield

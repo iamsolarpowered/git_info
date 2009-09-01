@@ -1,0 +1,21 @@
+#branch
+  Current Branch: 
+  %b= @current_branch
+  
+#branches
+  - if @branch_names != %w( master )
+    Switch to:
+    - for branch_name in @branch_names
+      %a{ :href => "?branch=#{branch_name}" }= branch_name unless branch_name == @current_branch
+      
+#commits
+  - for commit in @repo.commits(@branch, 1000)
+    .commit
+      %a.message{ :href => "/details/#{commit.id}" }
+        %img.commit_icon{ :src => '/images/checkmark.gif' }
+        = commit.message
+      .info 
+        Committed by
+        %a.committer{ :href => "mailto:#{commit.committer.email}?subject=#{CONFIG['title']}: #{commit.id}" }
+          = commit.committer.name
+        = commit.committed_date.strftime("%A %B %e, %Y at %H:%M")
